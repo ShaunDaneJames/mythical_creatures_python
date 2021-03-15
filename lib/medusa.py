@@ -1,22 +1,11 @@
 class Medusa:
-    def __init__(self, name, statues = []):
+    def __init__(self, name):
         self.name = name
-        self.statues = statues
+        self.statues = []
 
     def stare(self, victim):
-        if len(self.statues) == 3:
-            self.statues[0].stoned_status = False
-            self.statues.pop(0)
-            victim.stoned_status = True
-            self.statues.append(victim)
-        else:
-            victim.stoned_status = True
-            self.statues.append(victim)
-
-class Person:
-    def __init__(self, name, stoned_status = False):
-        self.name = name
-        self.stoned_status = stoned_status
-
-    def is_stoned(self):
-        return self.stoned_status
+        self.statues.append(victim)
+        victim.stoned = True
+        if len(self.statues) > 3:
+            person = self.statues.pop(0)
+            person.stoned = False
