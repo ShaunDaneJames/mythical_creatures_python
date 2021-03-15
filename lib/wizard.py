@@ -1,18 +1,23 @@
 class Wizard:
-    def __init__(self, name, bearded = True, rest_level = 0):
+    def __init__(self, name, bearded = True):
         self.name = name
         self.bearded = bearded
-        self.rest_level = rest_level
+        self.rested = True
+        self.mana = 3
 
     def is_bearded(self):
         return self.bearded
 
-    def incantation(self, phrase):
-        return f"sudo {phrase}"
+    def incantation(self, spell):
+        return "sudo " + spell
 
     def is_rested(self):
-        return self.rest_level < 3
+        return self.rested
 
     def cast(self):
-        self.rest_level += 1
-        return "MAGIC MISSILE!"
+        if self.mana > 1:
+            self.mana -= 1
+            return "MAGIC MISSILE!"
+        else:
+            self.rested = False
+            return "Out Of Mana!"
